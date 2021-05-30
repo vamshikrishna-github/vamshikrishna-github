@@ -1,0 +1,35 @@
+Vamshi, [30.05.21 18:54]
+#include<Servo.h>
+Servo myservo;
+
+void setup()
+{
+ pinMode(7,OUTPUT);
+  pinMode(5,INPUT);
+  myservo.attach(4);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(7,HIGH);
+  delay(1000);
+ digitalWrite(7,LOW);
+int duration=pulseIn(5,HIGH);
+  int distance=(duration*0.034)/2;
+  Serial.println("the distance is");
+  Serial.print(distance);
+  if(distance<=50)
+  {
+    myservo.write(180);
+    Serial.println("door opened");
+    delay(1000);
+  }
+ else
+ {
+   myservo.write(0);
+    Serial.println("door closed");
+    delay(1000);
+    
+ }
+}
